@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "castleblayney-bookings": {
+      "hosting": {
+        "Castleblayney-Bookings": [
+          "castleblayney-bookings"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "castleblayney-bookings"
+  }
+}
