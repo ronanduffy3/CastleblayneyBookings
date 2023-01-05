@@ -6,18 +6,27 @@
     transition: 0.5s;
 }
 .sidebar-nav ul li a:hover {
-    background-color: #eeeeee;
+    background-color: #EEEEEE;
+    color: black;
     border-radius: 4px;
 }
 .sidebar-nav .offcanvas {
     width: 220px;
     border: none;
+    background-color: #d2b48c;
 }
+
+.navbar-custom{
+    background-color: #d2b48c;
+
+}
+
 .sidebar-nav .offcanvas ul li a span {
     font-size: 18px;
     position: relative;
     top: -4px;
     transition: 0.5s;
+    color: black;
 }
 .sidebar-nav .offcanvas.show ul li a:hover span {
     padding-left: 10px;
@@ -29,5 +38,6 @@
 .bi::before, [class^="bi-"]::before, [class*=" bi-"]::before
 {
     margin-right: 5px;
+    color: black;
 }
 
