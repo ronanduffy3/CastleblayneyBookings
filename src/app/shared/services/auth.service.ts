@@ -32,6 +32,7 @@ export class AuthService {
 
    // Signing in with email and password - takes email and password as a string and sets the user data in the set user data function and if the user is valid navigates to dashboard
    SignIn(email: string, password: string){
+    console.log(email, password)
     return this.afAuth.signInWithEmailAndPassword(email,password)
       .then((result) => {
         this.SetUserData(result.user);
@@ -52,6 +53,14 @@ export class AuthService {
         window.alert(error.message);
       })
    }
+
+   // logic for signing out
+   SignOut() {
+    return this.afAuth.signOut().then(() => {
+      localStorage.removeItem('user');
+      this.router.navigate(['sign-in']);
+    });
+  }
 
    SetUserData(user: any) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(

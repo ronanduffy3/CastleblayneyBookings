@@ -14,6 +14,10 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { PropertiesComponent } from './components/properties/properties.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AppHeaderComponent } from './components/app-header/app-header.component';
+import { AuthService } from './shared/services/auth.service';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 
 
 @NgModule({
@@ -30,12 +34,11 @@ import { AppHeaderComponent } from './components/app-header/app-header.component
   imports: [
     BrowserModule,
     AppRoutingModule,
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideAuth(() => getAuth()),
-    provideDatabase(() => getDatabase()),
-    provideFirestore(() => getFirestore())
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+
   ],
-  providers: [],
+  providers: [AuthService, AngularFirestore],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
