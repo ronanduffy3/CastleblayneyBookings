@@ -11,18 +11,21 @@
               <div class="offcanvas-body">
                     <ul class="navbar-nav">
                         <li><a href="#"><i class="bi bi-calendar3"></i> <span class="item-text">Home</span></a></li>
-                        <li><a href="#"><i class="bi bi-pencil-square"></i> <span class="item-text">Properties</span></a></li>
-                        <li><a href="#"><i class="bi bi-people"></i> <span class="item-text">About Castleblayney</span></a></li>
+                        <li><a href="#"><i class="bi bi-house-fill"></i> <span class="item-text">Properties</span></a></li>
+                        <li><a href="#"><i class="bi bi-motherboard"></i> <span class="item-text">Dashboard</span></a></li>
+                        <li><a href="#"><i class="bi bi-patch-question-fill"></i> <span class="item-text">About Castleblayney</span></a></li>
                     </ul>
               </div>
             </div>
             <div class="btn-group">
                 <a href="#" class="dropdown-toggle text-white text-decoration-none" data-bs-toggle="dropdown" aria-expanded="false">
                     <span class="usericon"><i class="bi bi-person-circle"></i></span>
-                    <span class="textnone">Login</span>
+                    <span class="textnone">User</span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
-                    <li><button class="dropdown-item" type="button"><i class="bi bi-box-arrow-right"></i> Sign out</button></li>
+                    <li><button class="dropdown-item" type="button" (click)="this.router.navigate(['login'])"><i class="bi bi-box-arrow-right"></i>Sign In</button></li>
+                    <li><button class="dropdown-item" type="button" (click)="authService.SignOut()"><i class="bi bi-box-arrow-right"></i>Sign out</button></li>
+                    <li><button class="dropdown-item" type="button"><i class="bi bi-file-person-fill"></i>Profile</button></li>
                 </ul>
             </div>
         </div>
