@@ -4,11 +4,9 @@
 		    <h3 class="form-signin-heading">    </h3>
 			  <hr class="colorgraph"><br>
 			  
-              <input type="text" class="form-control" name="FullName" placeholder="Full Name" required="" autofocus="" value="{{(localstorage.user.displayName) ? authService.userData.displayName : 'User'}}" #fullName required>
-              <input type="text" class="form-control" name="Email" placeholder="Email" required="" autofocus="" value="{{(authService.userData.Email) ? authService.userData.Email : 'Email'}}" #userName required>	
+              <input type="text" class="form-control" name="FullName" placeholder="Full Name" required="" autofocus="" #fullName required>
+              <input type="text" class="form-control" name="Email" placeholder="Email" required="" autofocus="" #userName required>	
 			  <input type="password" class="form-control" name="Password" placeholder="Password" required="" #userPassword required>
-              		  
-			  
 			  <input type="button" class="btn btn-lg btn-custom btn-block" value="Update Profile" > 			
 		</form>			
 	</div>

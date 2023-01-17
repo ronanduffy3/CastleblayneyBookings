@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { User } from './user';
+import { User } from '../../models/user';
 import * as auth from 'firebase/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore, AngularFirestoreDocument, } from '@angular/fire/compat/firestore';
@@ -20,7 +20,7 @@ export class AuthService {
         this.userData = user;
         localStorage.setItem('user', JSON.stringify(this.userData));
         JSON.parse(localStorage.getItem('user')!);
-      } 
+      }
       else{
         localStorage.setItem('user', 'null');
         JSON.parse(localStorage.getItem('user')!)
@@ -38,7 +38,7 @@ export class AuthService {
         this.SetUserData(result.user);
         this.afAuth.authState.subscribe((user) => {
           if(user) {
-            this.router.navigate(['app-dashboard']);  
+            this.router.navigate(['profile']);  
           }
         })
       })

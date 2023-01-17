@@ -18,6 +18,7 @@ import { AuthService } from './shared/services/auth.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
     ForgotPasswordComponent,
     PropertiesComponent,
     DashboardComponent,
-    AppHeaderComponent
+    AppHeaderComponent,
+    ProfileComponent
   ],
   exports: [ LoginComponent ],
   imports: [

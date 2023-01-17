@@ -11,7 +11,7 @@
               <div class="offcanvas-body">
                     <ul class="navbar-nav">
                         <li><a href="#"><i class="bi bi-calendar3"></i> <span class="item-text">Home</span></a></li>
-                        <li><a href="#"><i class="bi bi-house-fill"></i> <span class="item-text">Properties</span></a></li>
+                        <li><a (click)="this.router.navigate(['properties'])"><i class="bi bi-house-fill"></i> <span class="item-text">Properties</span></a></li>
                         <li><a href="#"><i class="bi bi-motherboard"></i> <span class="item-text">Dashboard</span></a></li>
                         <li><a href="#"><i class="bi bi-patch-question-fill"></i> <span class="item-text">About Castleblayney</span></a></li>
                     </ul>
@@ -26,7 +26,7 @@
                     <li><button class="dropdown-item" type="button" (click)="this.router.navigate(['login'])">Sign In</button></li>
                     <li><button class="dropdown-item" type="button" (click)="authService.SignOut()">Sign Out</button></li>
                     <li><button class="dropdown-item" type="button" (click)="this.router.navigate(['register'])">Sign Up</button></li>
-                    <li><button class="dropdown-item" type="button">Profile</button></li>
+                    <li><button class="dropdown-item" type="button" (click)="this.router.navigate(['register'])">Profile</button></li>
                 </ul>
             </div>
         </div>
