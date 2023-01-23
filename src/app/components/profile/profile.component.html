@@ -1,13 +1,13 @@
 <div class="container formGroup">
-	<div class="wrapper">
+	<div class="wrapper" *ngIf="authService.userData as user">
 		<form action="" method="post" name="Login_Form" class="form-signin">       
 		    <h3 class="form-signin-heading">    </h3>
 			  <hr class="colorgraph"><br>
 			  
-              <input type="text" class="form-control" name="FullName" placeholder="Full Name" required="" autofocus="" #fullName required>
-              <input type="text" class="form-control" name="Email" placeholder="Email" required="" autofocus="" #userName required>	
-			  <input type="password" class="form-control" name="Password" placeholder="Password" required="" #userPassword required>
-			  <input type="button" class="btn btn-lg btn-custom btn-block" value="Update Profile" > 			
+              <input type="text" class="form-control" name="FullName" placeholder="{{user.displayName}}" required="" autofocus="" #fullName required>
+              <input type="text" class="form-control" name="Email" placeholder="{{user.email}}" [readonly]="true" required="" autofocus="" #userName required>	
+			  <p>User ID: <strong>{{user.uid}}</strong></p>	
+			  <input type="button" class="btn btn-lg btn-custom btn-block" value="Update Profile" (click)="authService.updateProfile(fullName.value)" > 			
 		</form>			
 	</div>
 </div>

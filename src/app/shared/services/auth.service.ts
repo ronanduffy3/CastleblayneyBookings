@@ -26,13 +26,20 @@ export class AuthService {
         JSON.parse(localStorage.getItem('user')!)
       }
     });
+   }
 
+   // Update Profile
+   async updateProfile(changedDisplayName: string){
+    const profile = {
+      displayName: changedDisplayName
+    }
+    location.reload;
+    return (await this.afAuth.currentUser).updateProfile(profile)
    }
    
 
    // Signing in with email and password - takes email and password as a string and sets the user data in the set user data function and if the user is valid navigates to dashboard
    SignIn(email: string, password: string){
-    console.log(email, password)
     return this.afAuth.signInWithEmailAndPassword(email,password)
       .then((result) => {
         this.SetUserData(result.user);
