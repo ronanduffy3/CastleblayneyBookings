@@ -19,6 +19,8 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { ProfileComponent } from './components/profile/profile.component';
+import { HomeComponent } from './components/home/home.component';
+import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 
 
 @NgModule({
@@ -30,7 +32,9 @@ import { ProfileComponent } from './components/profile/profile.component';
     PropertiesComponent,
     DashboardComponent,
     AppHeaderComponent,
-    ProfileComponent
+    ProfileComponent,
+    HomeComponent,
+    VerifyEmailComponent
   ],
   exports: [ LoginComponent ],
   imports: [
