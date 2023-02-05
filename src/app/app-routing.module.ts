@@ -7,6 +7,7 @@ import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { PropertiesComponent } from './components/properties/properties.component';
 import { RegisterComponent } from './components/register/register.component';
+import { UserPropertiesComponent } from './components/user-properties/user-properties.component';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { AuthGuard } from './shared/guard/auth.guard';
 
@@ -18,7 +19,8 @@ const routes: Routes = [
   {path: 'app-dashboard', component: DashboardComponent},
   {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
   {path: 'verify-email-address', component: VerifyEmailComponent},
-  {path: 'properties', component: PropertiesComponent}
+  {path: 'properties', component: PropertiesComponent},
+  {path: 'user-properties', component: UserPropertiesComponent}
 
 ];
 

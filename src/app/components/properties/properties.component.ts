@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PropertiesService } from 'src/app/shared/services/properties.service';
 
 @Component({
   selector: 'app-properties',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PropertiesComponent implements OnInit {
 
-  constructor() { }
+  properties: any[];
+
+  constructor(private propertyService: PropertiesService) { }
 
   ngOnInit(): void {
+    this.propertyService.getProperties().subscribe(properties => {
+      this.properties = properties
+    });
+    console.log(this.properties, "undefined error");
   }
 
 }

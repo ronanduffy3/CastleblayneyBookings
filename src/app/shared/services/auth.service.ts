@@ -4,6 +4,7 @@ import * as auth from 'firebase/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore, AngularFirestoreDocument, } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
+import { first } from 'rxjs';
 
 
 
@@ -28,11 +29,17 @@ export class AuthService {
       }
     });
    }
+   
 
   // user is logged in
   get isLoggedIn(): boolean {
     const user = JSON.parse(localStorage.getItem('user'));
     return (user !== null && user.emailVerified !== false) ? true : false;
+  }
+
+  async returnUserId() {
+    const user = await this.afAuth.authState.pipe(first()).toPromise();
+    return user.uid;
   }
 
    // Update Profile

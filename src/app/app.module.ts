@@ -21,6 +21,7 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { ProfileComponent } from './components/profile/profile.component';
 import { HomeComponent } from './components/home/home.component';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
+import { UserPropertiesComponent } from './components/user-properties/user-properties.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { VerifyEmailComponent } from './components/verify-email/verify-email.com
     AppHeaderComponent,
     ProfileComponent,
     HomeComponent,
-    VerifyEmailComponent
+    VerifyEmailComponent,
+    UserPropertiesComponent
   ],
   exports: [ LoginComponent ],
   imports: [
