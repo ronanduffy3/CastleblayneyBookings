@@ -49,4 +49,8 @@ export class PropertiesService {
     return properties;
   }
 
+  createProperty(property: Property) {
+    return this.propertiesCollection.add(property);
+  }
+
 }
