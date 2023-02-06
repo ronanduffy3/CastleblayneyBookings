@@ -18,6 +18,12 @@ body {
     background-color: white;
 }
 
+.btn-top{
+    color: black;
+    background-color:#d2b48c; 
+    margin-bottom: 20px;
+}
+
 
 .c-details span {
     font-weight: 300;

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CreatePropertiesComponent } from './components/create-properties/create-properties.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { HomeComponent } from './components/home/home.component';
@@ -20,7 +21,8 @@ const routes: Routes = [
   {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
   {path: 'verify-email-address', component: VerifyEmailComponent},
   {path: 'properties', component: PropertiesComponent},
-  {path: 'user-properties', component: UserPropertiesComponent}
+  {path: 'user-properties', component: UserPropertiesComponent},
+  {path: 'create-property', component: CreatePropertiesComponent}
 
 ];
 
