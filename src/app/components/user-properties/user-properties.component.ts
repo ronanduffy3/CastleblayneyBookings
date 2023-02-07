@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Property } from 'src/app/property';
+import { Property } from 'src/app/models/property';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { PropertiesService } from 'src/app/shared/services/properties.service';
 import { Router } from '@angular/router';

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators} from '@angular/forms';
-import { Property } from 'src/app/property';
+import { FormControl, FormGroup, Validators, ReactiveFormsModule, FormsModule} from '@angular/forms';
+import { Property } from 'src/app/models/property';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { PropertiesService } from 'src/app/shared/services/properties.service';
 
@@ -11,6 +11,8 @@ import { PropertiesService } from 'src/app/shared/services/properties.service';
   styleUrls: ['./create-properties.component.css']
 })
 export class CreatePropertiesComponent implements OnInit {
+
+  xuserID: string;
 
   constructor(public authService: AuthService, public propertyService: PropertiesService) { }
 
@@ -24,10 +26,20 @@ export class CreatePropertiesComponent implements OnInit {
 
   async ngOnInit() {
     const userID = await this.authService.returnUserId();
-    this.newProperty.controls['userID'].setValue(userID);
+    this.newProperty.controls['uid'].setValue(userID);
+    this.xuserID = userID;
   }
 
-  createProp(property: Property){
+  createProp(name: string, address: string, sleeps: string, ratePerNight: string, uid: string){
+    const property: Property = {
+      name: name,
+      address: address,
+      sleeps: sleeps,
+      ratePerNight: ratePerNight,
+      uid: uid
+      
+    }
+
     this.propertyService.createProperty(property)
   }
 

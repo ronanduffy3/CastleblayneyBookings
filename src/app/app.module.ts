@@ -24,7 +24,7 @@ import { VerifyEmailComponent } from './components/verify-email/verify-email.com
 import { UserPropertiesComponent } from './components/user-properties/user-properties.component';
 import { CreateComponentsComponent } from './components/create-components/create-components.component';
 import { CreatePropertiesComponent } from './components/create-properties/create-properties.component';
-import { ReactiveFormsModule } from "@Angular/forms";
+import { ReactiveFormsModule } from "@angular/forms";
 
 
 @NgModule({

@@ -5,20 +5,24 @@
 			  <hr class="colorgraph"><br>
 			  
             <div class="form-group">
-                <input type="text" class="form-control" name="Name" placeholder="Name" required="true" formControlName="name" autofocus="" #Name required>
+                <input type="text" class="form-control" name="name" placeholder="Name" required="true" formControlName="name" autofocus="" #Name required>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" name="Address" placeholder="Address" required="true" formControlName="address" #Address required>
+                <input type="text" class="form-control" name="address" placeholder="Address" required="true" formControlName="address" #Address required>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" name="Sleeps" placeholder="Sleeps" required="true" formControlName="sleeps" #Sleeps required>
+                <input type="number" class="form-control" name="sleeps" placeholder="Sleeps" required="true" formControlName="sleeps" #Sleeps required>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" name="RatePerNight" placeholder="Rate Per Night" formControlName="ratePerNight" required="true" #RatePerNight required>
+                <input type="number" class="form-control" name="ratePerNight" placeholder="Rate Per Night" formControlName="ratePerNight" required="true" #RatePerNight required>
             </div>
             <div class="form-group">
-                <input type="button" class="btn btn-lg btn-custom btn-block" value="Create"> 
-            </div>		  			
+                <label for="password" class="text-info">Created by: </label><br>                              
+                <input type="text" type="text" id="createdBy" class="form-control" formControlName="uid" value="{{this.xuserID}}"  #uid required readonly>
+            </div>    
+            <div class="form-group">
+                <input type="button" class="btn btn-lg btn-custom btn-block" value="Create" (click)="createProp(Name.value, Address.value, Sleeps.value, RatePerNight.value, uid.value)"> 
+            </div>	       
 		</form>			
 	</div>
 </div>

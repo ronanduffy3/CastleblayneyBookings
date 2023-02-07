@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { map, Observable } from 'rxjs';
 import { AuthService } from './auth.service';
-import { Property } from 'src/app/property';
+import { Property } from 'src/app/models/property';
 
 @Injectable({
   providedIn: 'root'
@@ -44,13 +44,14 @@ export class PropertiesService {
     let properties = this.properties;
     if (userID) {
       console.log(userID);
-      properties = this.fireStore.collection<Property>('properties', ref => ref.where('userID', '==', userID)).valueChanges();
+      properties = this.fireStore.collection<Property>('properties', ref => ref.where('uid', '==', userID)).valueChanges();
     }
     return properties;
   }
 
   createProperty(property: Property) {
-    return this.propertiesCollection.add(property);
+    return this.fireStore.collection(`properties`).add(property);
+    
   }
 
 }
