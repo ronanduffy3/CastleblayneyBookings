@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class UserPropertiesComponent implements OnInit {
 
-  properties: Property[];
+  properties: any[] = [];
 
   constructor(public propertyService: PropertiesService, private authService: AuthService, public router: Router) { 
   }
@@ -20,12 +20,17 @@ export class UserPropertiesComponent implements OnInit {
 
   async ngOnInit(){
     const userID = await this.authService.returnUserId();
-    //debug
-    console.log(userID);
     // subscribe to the items and cast it to the list 
-    await this.propertyService.getUserProperties(userID).subscribe(properties => {
+    this.propertyService.getUIDProperties(userID).subscribe(properties => {
       this.properties = properties
     });
+    console.log(this.properties, "undefined error");
+    this.properties.forEach(property => console.log(property));
   }
+
+  async deleteProperty(propertyId: string) {
+    (await this.propertyService.deleteProperty(propertyId));
+  }
+  
 
 }

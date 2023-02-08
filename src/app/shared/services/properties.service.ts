@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
-import { map, Observable } from 'rxjs';
+import { map, Observable, from } from 'rxjs';
 import { AuthService } from './auth.service';
 import { Property } from 'src/app/models/property';
 
@@ -39,17 +39,35 @@ export class PropertiesService {
           return actions.map(a => {
             const data = a.payload.doc.data();
             const id = a.payload.doc.id;
+            console.log(id + "id print");
             return { id, ...data };
           });
         })
       );
   }
 
+  getUIDProperties(userID?: string) {
+    return this.fireStore
+    .collection<any>('properties', ref=> ref.where('uid', '==', userID))
+    .snapshotChanges()
+    .pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+          console.log(id + "id print");
+          return { id, ...data };
+        });
+      })
+    );
+}
+
   getUserProperties(userID?: string): Observable<Property[]> {
     let properties = this.properties;
     if (userID) {
       console.log(userID);
-      properties = this.fireStore.collection<Property>('properties', ref => ref.where('uid', '==', userID)).valueChanges();
+      properties = this.fireStore.collection<Property>('properties', ref => ref.where('uid', '==', userID)).valueChanges()
+      ;
     }
     return properties;
   }
@@ -57,13 +75,6 @@ export class PropertiesService {
   createProperty(property: Property) {
     return this.fireStore.collection(`properties`).add(property);
     
-  }
-
-  deletePropertyTwo(data){
-    console.log(data);
-    return this.fireStore.collection('properties')
-      .doc(data.payload.doc.id)
-        .delete();
   }
 
   deleteProperty(id: string) {
@@ -74,8 +85,7 @@ export class PropertiesService {
       propertiesDoc.delete()
       .then(res => {
         console.log("Propertiy with ID" + id + " has been delete successfully ")
-        //this.refreshProperties();
-        //location.reload();
+        this.refreshProperties();
       }).catch((error) => {
         console.log("error removing document: " + error);
       })
@@ -83,6 +93,5 @@ export class PropertiesService {
       else{ 
         window.alert("Property Not Deleted")
       }
-    
   }
 }
