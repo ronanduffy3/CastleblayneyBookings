@@ -20,7 +20,8 @@
                    <div class="property-details">
                       <h6>Rate €{{property.ratePerNight}} per night | {{property.address}}</h6>
                    </div>
-                   <div class="mt-3"> <span class="text1" style="padding-right: 25px;">Sleeps {{property.sleeps}}</span> <input type="button" class="btn btn-md btn-custom btn-block" value="Edit Property" ><input type="button" class="btn btn-md btn-custom btn-block" style='margin-left: 25px;' value="Delete Property"></div>
+                   <div class="mt-3"> <span class="text1" style="padding-right: 25px;">Sleeps {{property.sleeps}}</span> <input type="button" class="btn btn-md btn-custom btn-block" value="Edit Property" >
+                   <input type="button" class="btn btn-md btn-custom btn-block" style='margin-left: 25px;' value="Delete Property"  (click)="this.propertyService.deletePropertyTwo(property)"></div>
                 </div>
              </div>
           </div>

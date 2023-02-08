@@ -15,7 +15,11 @@ export class PropertiesService {
 
 
   constructor(private fireStore: AngularFirestore, private authService: AuthService) { 
-    this.propertiesCollection = fireStore.collection<Property>('properties');
+    this.refreshProperties();
+  }
+
+  refreshProperties(): void { 
+    this.propertiesCollection = this.fireStore.collection<Property>('properties');
     this.properties = this.propertiesCollection.snapshotChanges().pipe(
       map(actions => actions.map(a => {
         const data = a.payload.doc.data() as Property;
@@ -23,6 +27,7 @@ export class PropertiesService {
         return { id, ...data };
       }))
     );
+
   }
 
   getProperties(){
@@ -54,4 +59,30 @@ export class PropertiesService {
     
   }
 
+  deletePropertyTwo(data){
+    console.log(data);
+    return this.fireStore.collection('properties')
+      .doc(data.payload.doc.id)
+        .delete();
+  }
+
+  deleteProperty(id: string) {
+    console.log(id);
+    var answer = window.confirm("You want to delete, you can not reverse this decision" + id)
+    if(answer){ 
+      const propertiesDoc = this.fireStore.collection('properties').doc(id);
+      propertiesDoc.delete()
+      .then(res => {
+        console.log("Propertiy with ID" + id + " has been delete successfully ")
+        //this.refreshProperties();
+        //location.reload();
+      }).catch((error) => {
+        console.log("error removing document: " + error);
+      })
+      }  
+      else{ 
+        window.alert("Property Not Deleted")
+      }
+    
+  }
 }

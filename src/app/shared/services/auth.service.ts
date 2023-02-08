@@ -37,6 +37,11 @@ export class AuthService {
     return (user !== null && user.emailVerified !== false) ? true : false;
   }
 
+  async returnDisplayname(){
+      const user = await this.afAuth.authState.pipe(first()).toPromise();
+      return user.displayName;
+  }
+
   async returnUserId() {
     const user = await this.afAuth.authState.pipe(first()).toPromise();
     return user.uid;

@@ -22,7 +22,6 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { HomeComponent } from './components/home/home.component';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { UserPropertiesComponent } from './components/user-properties/user-properties.component';
-import { CreateComponentsComponent } from './components/create-components/create-components.component';
 import { CreatePropertiesComponent } from './components/create-properties/create-properties.component';
 import { ReactiveFormsModule } from "@angular/forms";
 
@@ -40,7 +39,6 @@ import { ReactiveFormsModule } from "@angular/forms";
     HomeComponent,
     VerifyEmailComponent,
     UserPropertiesComponent,
-    CreateComponentsComponent,
     CreatePropertiesComponent
   ],
   exports: [ LoginComponent ],

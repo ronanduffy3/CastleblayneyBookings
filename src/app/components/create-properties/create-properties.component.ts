@@ -37,8 +37,9 @@ export class CreatePropertiesComponent implements OnInit {
       sleeps: sleeps,
       ratePerNight: ratePerNight,
       uid: uid
-      
     }
+
+    
 
     this.propertyService.createProperty(property)
   }

@@ -9,6 +9,7 @@ import { PropertiesService } from 'src/app/shared/services/properties.service';
 export class PropertiesComponent implements OnInit {
 
   properties: any[];
+  displayStyle = "none";
 
   constructor(private propertyService: PropertiesService) { }
 
@@ -19,4 +20,13 @@ export class PropertiesComponent implements OnInit {
     console.log(this.properties, "undefined error");
   }
 
+  openPopup(){
+    this.displayStyle = "block";
+
+  }
+
+  closePopup(){
+    this.displayStyle = "none";
+
+  }
 }

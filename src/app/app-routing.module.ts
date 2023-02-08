@@ -22,8 +22,7 @@ const routes: Routes = [
   {path: 'verify-email-address', component: VerifyEmailComponent},
   {path: 'properties', component: PropertiesComponent},
   {path: 'user-properties', component: UserPropertiesComponent},
-  {path: 'create-property', component: CreatePropertiesComponent}
-
+  {path: 'create-property', component: CreatePropertiesComponent},
 ];
 
 @NgModule({

@@ -18,6 +18,10 @@ body {
     background-color: white;
 }
 
+.btn-modal{
+    border-color: black;
+    border-width: 1px;
+}
 
 .c-details span {
     font-weight: 300;

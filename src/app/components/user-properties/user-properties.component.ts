@@ -13,7 +13,7 @@ export class UserPropertiesComponent implements OnInit {
 
   properties: Property[];
 
-  constructor(private propertyService: PropertiesService, private authService: AuthService, public router: Router) { 
+  constructor(public propertyService: PropertiesService, private authService: AuthService, public router: Router) { 
   }
 
   // fill properties item with properties relevant to current user
