@@ -24,6 +24,7 @@ import { VerifyEmailComponent } from './components/verify-email/verify-email.com
 import { UserPropertiesComponent } from './components/user-properties/user-properties.component';
 import { CreatePropertiesComponent } from './components/create-properties/create-properties.component';
 import { ReactiveFormsModule } from "@angular/forms";
+import { EditPropertiesComponent } from './components/edit-properties/edit-properties.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { ReactiveFormsModule } from "@angular/forms";
     HomeComponent,
     VerifyEmailComponent,
     UserPropertiesComponent,
-    CreatePropertiesComponent
+    CreatePropertiesComponent,
+    EditPropertiesComponent
   ],
   exports: [ LoginComponent ],
   imports: [

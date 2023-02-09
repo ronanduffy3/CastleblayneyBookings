@@ -31,6 +31,10 @@ export class UserPropertiesComponent implements OnInit {
   async deleteProperty(propertyId: string) {
     (await this.propertyService.deleteProperty(propertyId));
   }
+
+  editProperty(id: string) {
+    this.router.navigate(['edit-properties'], { queryParams: { id } });
+  }
   
 
 }

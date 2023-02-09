@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CreatePropertiesComponent } from './components/create-properties/create-properties.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { EditPropertiesComponent } from './components/edit-properties/edit-properties.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
@@ -23,6 +24,7 @@ const routes: Routes = [
   {path: 'properties', component: PropertiesComponent},
   {path: 'user-properties', component: UserPropertiesComponent},
   {path: 'create-property', component: CreatePropertiesComponent},
+  {path: 'edit-properties', component: EditPropertiesComponent}
 ];
 
 @NgModule({
