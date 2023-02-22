@@ -18,6 +18,7 @@ import { AuthService } from './shared/services/auth.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireFunctionsModule } from '@angular/fire/compat/functions';
 import { ProfileComponent } from './components/profile/profile.component';
 import { HomeComponent } from './components/home/home.component';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
@@ -49,6 +50,7 @@ import { EditPropertiesComponent } from './components/edit-properties/edit-prope
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
+    AngularFireFunctionsModule,
     ReactiveFormsModule
 
   ],
