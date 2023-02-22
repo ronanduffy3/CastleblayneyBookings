@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { getDatabase } from '@firebase/database';
 import { PropertiesService } from 'src/app/shared/services/properties.service';
 
 @Component({
@@ -10,6 +11,7 @@ export class PropertiesComponent implements OnInit {
 
   properties: any[];
   displayStyle = "none";
+  
 
   constructor(private propertyService: PropertiesService) { }
 

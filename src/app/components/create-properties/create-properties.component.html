@@ -1,28 +1,35 @@
 <div class="container formGroup">
 	<div class="wrapper">
-		<form action="" method="post" [formGroup]="newProperty" name="Login_Form" class="form-signin">       
-		    <h3 class="form-signin-heading">Create Property</h3>
-			  <hr class="colorgraph"><br>
-			  
-            <div class="form-group">
-                <input type="text" class="form-control" name="name" placeholder="Name" required="true" formControlName="name" autofocus="" #Name required>
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" name="address" placeholder="Address" required="true" formControlName="address" #Address required>
-            </div>
-            <div class="form-group">
-                <input type="number" class="form-control" name="sleeps" placeholder="Sleeps" required="true" formControlName="sleeps" #Sleeps required>
-            </div>
-            <div class="form-group">
-                <input type="number" class="form-control" name="ratePerNight" placeholder="Rate Per Night" formControlName="ratePerNight" required="true" #RatePerNight required>
-            </div>
-            <div class="form-group">
-                <label for="password" class="text-info">Created by: </label><br>                              
-                <input type="text" type="text" id="createdBy" class="form-control" formControlName="uid" value="{{this.xuserID}}"  #uid required readonly>
-            </div>    
-            <div class="form-group">
-                <input type="button" class="btn btn-lg btn-custom btn-block" value="Create" (click)="createProp(Name.value, Address.value, Sleeps.value, RatePerNight.value, uid.value)"> 
-            </div>	       
-		</form>			
+		<form [formGroup]="form" class="form-signin">
+      <h3 class="form-signin-heading">Create Property</h3>
+			<hr class="colorgraph"><br>
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Property Name" name="name" formControlName="name" required>
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Address"  name="address" formControlName="address" required>
+      </div>
+      <div class="form-group">
+        <input type="number" class="form-control" placeholder="Sleeps" name="sleeps" formControlName="sleeps" required>
+      </div>
+      <div class="form-group">
+        <input type="number" class="form-control"  placeholder="ratePerNight" name="ratePerNight" formControlName="ratePerNight" required>
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" readonly name="uid" formControlName="uid" required>
+      </div>
+      <div class="form-group form-control">
+        <div class="form-check" *ngFor="let month of months; let i = index">
+          <label class="form-check-label">
+            <input type="checkbox" class="form-check-input" [checked]="month.checked" (change)="months[i].checked = !months[i].checked">
+            {{ month.month }}
+          </label>
+        </div>
+      </div> 
+      <div class="form-group">
+        <button type="button" class="btn btn-lg btn-custom btn-block" (click)="createProperty()">Create</button>
+      </div>
+    </form>
+					
 	</div>
 </div>
