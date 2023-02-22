@@ -1,18 +1,30 @@
-<table>
-    <thead>
-      <tr>
-        <th>UID</th>
-        <th>Email</th>
-        <th>Display Name</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let user of users$ | async">
-        <td>{{ user.uid }}</td>
-        <td>{{ user.email }}</td>
-        <td>{{ user.displayName }}</td>
-        <td><button (click)="promoteUser()">Promote</button></td>
-      </tr>
-    </tbody>
-  </table>
+<div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <table class="table table-responsive">
+          <thead>
+            <tr>
+              <th>UID</th>
+              <th>Email</th>
+              <th>Display Name</th>
+              <th>Role</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of users$ | async">
+              <td>{{ user.uid }}</td>
+              <td>{{ user.email }}</td>
+              <td>{{ user.displayName }}</td>
+              <td>{{ user.role }}</td>
+              <td>
+                <button class="btn btn-custom" (click)="promoteUser()">
+                  Promote
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>

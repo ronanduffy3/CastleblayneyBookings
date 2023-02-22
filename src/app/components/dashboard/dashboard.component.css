@@ -1,0 +1,10 @@
+table {
+    background-color: #d2b48c;
+    margin-top: 75px;
+  }
+
+  .btn-custom{ 
+    color: grey;
+    background-color: white;
+    margin-top: 5px;
+}
