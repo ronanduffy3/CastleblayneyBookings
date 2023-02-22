@@ -1,1 +1,18 @@
-<p>dashboard works!</p>
+<table>
+    <thead>
+      <tr>
+        <th>UID</th>
+        <th>Email</th>
+        <th>Display Name</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users$ | async">
+        <td>{{ user.uid }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.displayName }}</td>
+        <td><button (click)="promoteUser()">Promote</button></td>
+      </tr>
+    </tbody>
+  </table>

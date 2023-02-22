@@ -15,3 +15,19 @@ export const newUserCreated = functions.auth.user().onCreate(async (user) => {
     return console.error(error);
   }
 });
+
+
+export const getUsersWithUserClaim = functions.https.onCall(async (data, context) => {
+
+  const userRecords = await admin.auth().listUsers();
+  const usersWithUserClaim = userRecords.users.filter((user) =>
+    user.customClaims?.role === "user"
+  );
+  const usersData = usersWithUserClaim.map((user) => ({
+    uid: user.uid,
+    email: user.email,
+    displayName: user.displayName,
+  }));
+
+  return usersData;
+});

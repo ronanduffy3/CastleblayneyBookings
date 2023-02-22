@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireFunctions } from '@angular/fire/compat/functions';
+import { map, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,16 +9,25 @@ import { AngularFireFunctions } from '@angular/fire/compat/functions';
 })
 export class DashboardComponent implements OnInit {
 
+  users$: Observable<any[]>;
+
   constructor(public functions: AngularFireFunctions) { }
 
   ngOnInit(): void {
-    this.createHost();
+    const getUsersWithUserClaim = this.functions.httpsCallable(
+      "getUsersWithUserClaim"
+    );
+    this.users$ = getUsersWithUserClaim({}).pipe(
+      map((response) => response)
+    );
+
+    this.users$.subscribe((data) => console.log(data));
   }
 
-  createHost(){
-    const createNewHost = this.functions.httpsCallable('giveUserHost')
-    const data = createNewHost({uid: 'xtFXerj2z2QL2q5SZvkHUDUBSaA2'}).subscribe((data) => console.log(data));
+  promoteUser(){
+
   }
+  
 
 
 }
