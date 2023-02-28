@@ -26,7 +26,7 @@ import { UserPropertiesComponent } from './components/user-properties/user-prope
 import { CreatePropertiesComponent } from './components/create-properties/create-properties.component';
 import { ReactiveFormsModule } from "@angular/forms";
 import { EditPropertiesComponent } from './components/edit-properties/edit-properties.component';
-
+import { AngularFireStorageModule, BUCKET } from '@angular/fire/compat/storage';
 
 @NgModule({
   declarations: [
@@ -51,10 +51,11 @@ import { EditPropertiesComponent } from './components/edit-properties/edit-prope
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireFunctionsModule,
+    AngularFireStorageModule,
     ReactiveFormsModule
 
   ],
-  providers: [AuthService, AngularFirestore],
+  providers: [AuthService, AngularFirestore, {provide: BUCKET, useValue: 'castleblayney-bookings-images'}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

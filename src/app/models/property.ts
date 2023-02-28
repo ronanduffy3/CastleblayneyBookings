@@ -5,5 +5,7 @@ export interface Property {
     ratePerNight: string;
     address: string;
     sleeps: string;
+    shortDescription?: string;
     availability?: {};
+    images?: string[];
 }

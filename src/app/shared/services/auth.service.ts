@@ -97,21 +97,29 @@ export class AuthService {
     });
   }
 
-   SetUserData(user: any) {
-    const userRef: AngularFirestoreDocument<any> = this.afs.doc(
-      `users/${user.uid}`
-    );
-    const userData: User = {
-      uid: user.uid,
-      email: user.email,
-      displayName: user.displayName,
-      photoURL: user.photoURL,
-      emailVerified: user.emailVerified,
-    };
-    return userRef.set(userData, {
-      merge: true,
+  SetUserData(user: any) {
+    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
+    userRef.valueChanges().subscribe((data) => {
+      if (data) {
+        // Get the user's custom claims
+        this.afAuth.idTokenResult.subscribe((idTokenResult) => {
+          const role = idTokenResult.claims['role'] // Get the user's role
+  
+          // Set user data in local storage
+          const userData = {
+            uid: user.uid,
+            email: user.email,
+            displayName: user.displayName,
+            photoURL: user.photoURL,
+            role: role // Set the user's role in the local storage object
+          };
+          localStorage.setItem('user', JSON.stringify(userData));
+        });
+      }
     });
   }
+
+
 
   
   

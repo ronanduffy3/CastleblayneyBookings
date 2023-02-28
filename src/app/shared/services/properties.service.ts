@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { map, Observable, from } from 'rxjs';
 import { AuthService } from './auth.service';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { Property } from 'src/app/models/property';
+import { finalize } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +16,7 @@ export class PropertiesService {
   private propertiesCollection: AngularFirestoreCollection<Property>;
 
 
-  constructor(private fireStore: AngularFirestore, private authService: AuthService) { 
+  constructor(private fireStore: AngularFirestore, private authService: AuthService, public storage: AngularFireStorage) { 
     this.refreshProperties();
   }
 
@@ -72,8 +74,52 @@ export class PropertiesService {
     return properties;
   }
 
-  createProperty(property: Property) {
-    return this.fireStore.collection(`properties`).add(property);
+  createProperty(property: Property, filesOne: FileList) {
+    
+    const fileArray: File[] = Array.from(filesOne);
+
+    // Create an array to hold the URLs of uploaded files
+    const fileUrls: string[] = [];
+  
+    // Loop through each file and upload it to Firebase Storage
+    for (const file of fileArray) {
+      // Generate a random ID for the file name
+      const randomId = Math.random().toString(36).substring(2);
+      const filePath = `properties/${randomId}`;
+  
+      // Create a storage reference to the file path
+      const storageRef = this.storage.ref(filePath);
+  
+      // Upload the file to Firebase Storage
+      const task = this.storage.upload(filePath, file);
+  
+      // Listen for the upload progress and console log the percentage
+      task.percentageChanges().subscribe(percent => console.log(percent));
+  
+      // Get the download URL of the uploaded file and add it to the fileUrls array
+      task.snapshotChanges().pipe(
+        finalize(() => {
+          storageRef.getDownloadURL().subscribe(url => {
+            console.log(url);
+            fileUrls.push(url);
+            property.images.push(url)
+            if (property.images.length === fileArray.length) {
+              // Add the property to the Firestore collection and get the document reference
+              const documentRef = this.fireStore.collection(`properties`).add(property);
+              // Get the ID of the newly created document and log it to the console
+              documentRef.then(docRef => console.log(`Property added with ID: ${docRef.id}`));
+            }
+          });
+        })
+      ).subscribe();
+    }
+
+
+//return this.fireStore.collection(`properties`).add(property);
+    
+  }
+
+  private uploadFiles(files: File[]) {
     
   }
 

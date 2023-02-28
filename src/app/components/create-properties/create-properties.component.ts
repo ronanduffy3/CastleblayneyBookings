@@ -3,6 +3,8 @@ import { FormControl, FormGroup, Validators, ReactiveFormsModule, FormsModule, F
 import { Property } from 'src/app/models/property';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { PropertiesService } from 'src/app/shared/services/properties.service';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { combineLatest, finalize, map, Observable } from 'rxjs';
 
 
 @Component({
@@ -15,18 +17,9 @@ export class CreatePropertiesComponent implements OnInit {
   form: FormGroup;
   xuserID: string;
   months: { month: string, checked: boolean }[];
+  selectedFiles: any[] = [];
 
-  constructor(public authService: AuthService, public propertyService: PropertiesService) { }
-
-  /* form = new FormGroup({
-    name: new FormControl('', Validators.required),
-    address: new FormControl('', Validators.required),
-    ratePerNight: new FormControl('', Validators.required),
-    sleeps: new FormControl('', Validators.required),
-    monthsAvailable: new FormControl([], Validators.required),
-    uid: new FormControl('', Validators.required)
-
-  }) */
+  constructor(public authService: AuthService, public propertyService: PropertiesService, public storage: AngularFireStorage) { }
 
   async ngOnInit() {
 
@@ -50,6 +43,7 @@ export class CreatePropertiesComponent implements OnInit {
       address: new FormControl(),
       sleeps: new FormControl(),
       ratePerNight: new FormControl(),
+      shortDescription: new FormControl(),
       uid: new FormControl(),
       availableMonths: new FormControl([], Validators.required)
     });
@@ -58,7 +52,7 @@ export class CreatePropertiesComponent implements OnInit {
     const userID = await this.authService.returnUserId();
     this.form.controls['uid'].setValue(userID);
     this.xuserID = userID;
-  }
+}
 
   
   createProperty() {
@@ -88,27 +82,34 @@ export class CreatePropertiesComponent implements OnInit {
     for (const month of monthsAvailable) {
       availability[month] = true;
     }
-  
     const property: Property = {
       name: this.form.get('name').value,
       address: this.form.get('address').value,
       sleeps: this.form.get('sleeps').value,
       ratePerNight: this.form.get('ratePerNight').value,
       uid: this.form.get('uid').value,
-      availability: availability
+      availability: availability,
+      images: []
     };
-    this.propertyService.createProperty(property);
+
+    const files: File[] = Array.from(this.selectedFiles);
+    const fileDataTransfer = new DataTransfer();
+    files.forEach((file: File) => {
+      fileDataTransfer.items.add(file);
+    });
+    const fileList: FileList = fileDataTransfer.files;
+
+
+    this.propertyService.createProperty(property, fileList)
   }
 
-  createProp(name: string, address: string, sleeps: string, ratePerNight: string, uid: string){
-    const property: Property = {
-      name: name,
-      address: address,
-      sleeps: sleeps,
-      ratePerNight: ratePerNight,
-      uid: uid
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length) {
+      for (let i = 0; i < input.files.length; i++) {
+        this.selectedFiles.push(input.files[i]);
+      }
     }
-    this.propertyService.createProperty(property)
   }
 
 }

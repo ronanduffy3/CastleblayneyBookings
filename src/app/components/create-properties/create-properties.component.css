@@ -30,6 +30,11 @@
     margin-top: 5px;
 }
 
+.shortDesc {
+  overflow: auto; /* enable vertical scrolling if necessary */
+  max-height: 150px; /* set a maximum height for the box */
+}
+
 input[type="text"] {
   margin-bottom: 0px;
   border-bottom-left-radius: 0;
