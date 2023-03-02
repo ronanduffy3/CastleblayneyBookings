@@ -12,7 +12,7 @@
                     <ul class="navbar-nav">
                         <li><a (click)="this.router.navigate(['home'])"><i class="bi bi-calendar3" ></i> <span class="item-text">Home</span></a></li>
                         <li><a (click)="this.router.navigate(['properties'])"><i class="bi bi-house-fill"></i> <span class="item-text">Properties</span></a></li>
-                        <li><a (click)="this.router.navigate(['app-dashboard'])"><i class="bi bi-motherboard"></i> <span class="item-text">Admin Dashboard</span></a></li>
+                        <li><a *ngIf=='this.authService.hasAdminCustomClaim()' (click)="this.router.navigate(['app-dashboard'])"><i class="bi bi-motherboard"></i> <span class="item-text">Admin Dashboard</span></a></li>
                     </ul>
               </div>
             </div>

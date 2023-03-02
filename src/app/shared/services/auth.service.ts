@@ -97,6 +97,16 @@ export class AuthService {
     });
   }
 
+  async hasAdminCustomClaim(): Promise<boolean> {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (this.isLoggedIn && user.role === 'admin') {
+      return true;
+    } else {
+      this.router.navigate(['unauthorized']);
+      return false;
+    }
+  }
+
   SetUserData(user: any) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
     userRef.valueChanges().subscribe((data) => {

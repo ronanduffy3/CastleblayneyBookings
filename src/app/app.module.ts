@@ -27,6 +27,7 @@ import { CreatePropertiesComponent } from './components/create-properties/create
 import { ReactiveFormsModule } from "@angular/forms";
 import { EditPropertiesComponent } from './components/edit-properties/edit-properties.component';
 import { AngularFireStorageModule, BUCKET } from '@angular/fire/compat/storage';
+import { DatepickerModule } from 'ng2-datepicker';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { AngularFireStorageModule, BUCKET } from '@angular/fire/compat/storage';
     AngularFirestoreModule,
     AngularFireFunctionsModule,
     AngularFireStorageModule,
+    DatepickerModule,
     ReactiveFormsModule
 
   ],

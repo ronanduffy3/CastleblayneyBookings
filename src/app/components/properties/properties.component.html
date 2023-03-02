@@ -25,7 +25,7 @@
                      <div class="modal-dialog" role="document">
                        <div class="modal-content">
                          <div class="modal-header">
-                           <h5 class="modal-title">Book now</h5>
+                           <h5 class="modal-title">Book {{property.name}} now </h5>
                          </div>
                          <div class="modal-body">
                            <div class="container">
@@ -43,7 +43,7 @@
                          </div>
                          <div class="modal-footer">
                            <button type="button" type="button" class="btn btn-custom btn-block btn-modal" (click)="closePopup()">Close</button>
-                           <button type="button" class="btn btn-custom btn-block btn-modal">Book Property</button>
+                           <button type="button" class="btn btn-custom btn-block btn-modal" (click)="bookProperty()">Book Property</button>
                          </div>
                        </div>
                      </div>

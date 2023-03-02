@@ -114,8 +114,6 @@ export class PropertiesService {
       ).subscribe();
     }
 
-
-//return this.fireStore.collection(`properties`).add(property);
     
   }
 

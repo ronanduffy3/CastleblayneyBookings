@@ -11,7 +11,6 @@ export class PropertiesComponent implements OnInit {
 
   properties: any[];
   displayStyle = "none";
-  
 
   constructor(private propertyService: PropertiesService) { }
 
@@ -26,9 +25,20 @@ export class PropertiesComponent implements OnInit {
     this.displayStyle = "block";
 
   }
-
   closePopup(){
     this.displayStyle = "none";
+
+  }
+
+  bookProperty(){
+    const startDateInput = document.getElementById('startDate') as HTMLInputElement;
+    const endDateInput = document.getElementById('endDate') as HTMLInputElement;
+    const startDate = startDateInput.value;
+    const endDate = endDateInput.value;
+
+    console.log(startDate);
+    console.log(endDate);
+
 
   }
 }

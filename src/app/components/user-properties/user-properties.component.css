@@ -8,11 +8,20 @@ body {
 }
 
 .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     border: none;
     border-radius: 10px;
-    background-color: #d2b48c; 
-}
+    background-color: #d2b48c;
+  }
 
+  .card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    margin-top: 15px;
+  }
 .btn-custom{ 
     color: black;
     background-color: white;
