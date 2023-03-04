@@ -1,32 +1,34 @@
 <div class="container formGroup">
-	<div class="wrapper">
-		<form [formGroup]="form" class="form-signin">
+  <div class="wrapper">
+    <form [formGroup]="form" class="form-signin">
       <h3 class="form-signin-heading">Create Property</h3>
-			<hr class="colorgraph"><br>
+      <hr class="colorgraph"><br>
       <div class="form-group">
         <input type="text" class="form-control" placeholder="Property Name" name="name" formControlName="name" required>
       </div>
       <div class="form-group">
-        <input type="text" class="form-control" placeholder="Address"  name="address" formControlName="address" required>
+        <input type="text" class="form-control" placeholder="Address" name="address" formControlName="address" required>
       </div>
       <div class="form-group">
         <input type="number" class="form-control" placeholder="Sleeps" name="sleeps" formControlName="sleeps" required>
       </div>
       <div class="form-group">
-        <input type="number" class="form-control"  placeholder="Rate Per Night" name="ratePerNight" formControlName="ratePerNight" required>
+        <input type="number" class="form-control" placeholder="Rate Per Night" name="ratePerNight"
+          formControlName="ratePerNight" required>
       </div>
       <div class="form-group">
-        <input type="text" class="form-control shortDesc"  placeholder="Short description of the property..." name="shortDescription" formControlName="shortDescription" required>
+        <input type="text" class="form-control shortDesc" placeholder="Short description of the property..."
+          name="shortDescription" formControlName="shortDescription" required>
       </div>
-
       <div class="form-group form-control">
         <div class="form-check" *ngFor="let month of months; let i = index">
           <label class="form-check-label">
-            <input type="checkbox" class="form-check-input" [checked]="month.checked" (change)="months[i].checked = !months[i].checked">
+            <input type="checkbox" class="form-check-input" [checked]="month.checked"
+              (change)="months[i].checked = !months[i].checked">
             {{ month.month }}
           </label>
         </div>
-      </div> 
+      </div>
       <div class="form-group">
         <input type="file" id="file-upload" multiple (change)="onFileSelected($event)">
       </div>
@@ -34,6 +36,6 @@
         <button type="button" class="btn btn-lg btn-custom btn-block" (click)="createProperty()">Create</button>
       </div>
     </form>
-					
-	</div>
+
+  </div>
 </div>

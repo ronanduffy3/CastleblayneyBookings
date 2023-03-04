@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
@@ -27,7 +27,7 @@ import { CreatePropertiesComponent } from './components/create-properties/create
 import { ReactiveFormsModule } from "@angular/forms";
 import { EditPropertiesComponent } from './components/edit-properties/edit-properties.component';
 import { AngularFireStorageModule, BUCKET } from '@angular/fire/compat/storage';
-import { DatepickerModule } from 'ng2-datepicker';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -45,15 +45,17 @@ import { DatepickerModule } from 'ng2-datepicker';
     CreatePropertiesComponent,
     EditPropertiesComponent
   ],
-  exports: [ LoginComponent ],
+  exports: [ LoginComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
+    CommonModule,
     AngularFireFunctionsModule,
     AngularFireStorageModule,
-    DatepickerModule,
+    
+    FormsModule,
     ReactiveFormsModule
 
   ],

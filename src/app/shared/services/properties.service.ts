@@ -15,7 +15,6 @@ export class PropertiesService {
   properties: Observable<Property[]>;
   private propertiesCollection: AngularFirestoreCollection<Property>;
 
-
   constructor(private fireStore: AngularFirestore, private authService: AuthService, public storage: AngularFireStorage) { 
     this.refreshProperties();
   }
@@ -29,7 +28,6 @@ export class PropertiesService {
         return { id, ...data };
       }))
     );
-
   }
 
   getProperties(){
@@ -115,6 +113,10 @@ export class PropertiesService {
     }
 
     
+  }
+
+  getPropertyById(id: string): Observable<Property> {
+    return this.fireStore.collection<Property>('properties').doc(id).valueChanges();
   }
 
   private uploadFiles(files: File[]) {

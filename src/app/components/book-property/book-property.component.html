@@ -1,0 +1,40 @@
+<div class="container">
+   <div class="wrapper">
+      <div class="row">
+         <div class="card p-3 mb-2">
+            <div class="d-flex justify-content-between">
+               <div class="d-flex flex-row align-items-center">
+                  <div class="icon"> <i class="bi bi-house"></i> </div>
+                  <div class="ms-2 c-details">
+                     <h6 class="mb-0">{{property.name}}</h6>
+                  </div>
+               </div>
+            </div>
+            <div class="container">
+               <img [src]="property.images.length > 0 ? property.images[0] : 'placeholder-image-url'"
+                  alt="Property image">
+            </div>
+            <div class="mt-5">
+               <h3 class="heading"><br></h3>
+               <div class="mt-5">
+                  <div class="property-details">
+                     <h6>Rate <b>€{{property.ratePerNight}} </b> per night | {{property.address}}</h6>
+                     <h6>{{property.shortDescription}}</h6>
+                     <h6>Sleeps: {{property.sleeps}}</h6>
+                     <div class="form-group row">
+                        <label for="start-date" class="col-sm-2 col-form-label">Start Date:</label>
+                        <div class="col-sm-4">
+                           <input type="date" class="form-control" id="start-date" [(ngModel)]="startDate">
+                        </div>
+                        <label for="end-date" class="col-sm-2 col-form-label">End Date:</label>
+                        <div class="col-sm-4">
+                           <input type="date" class="form-control" id="end-date" [(ngModel)]="endDate">
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

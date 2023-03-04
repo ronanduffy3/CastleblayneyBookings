@@ -13,6 +13,8 @@ import { UserPropertiesComponent } from './components/user-properties/user-prope
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { AuthGuard } from './shared/guard/auth.guard';
 import { AdminGuard } from './shared/guard/admin.guard';
+import { FormsModule } from '@angular/forms';
+import { BookPropertyComponent } from './components/book-property/book-property.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -25,11 +27,12 @@ const routes: Routes = [
   {path: 'properties', component: PropertiesComponent},
   {path: 'user-properties', component: UserPropertiesComponent},
   {path: 'create-property', component: CreatePropertiesComponent},
-  {path: 'edit-properties', component: EditPropertiesComponent}
+  {path: 'edit-properties', component: EditPropertiesComponent},
+  {path: 'properties/:id', component: BookPropertyComponent },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes), FormsModule],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

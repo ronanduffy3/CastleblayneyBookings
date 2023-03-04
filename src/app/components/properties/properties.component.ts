@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { getDatabase } from '@firebase/database';
 import { PropertiesService } from 'src/app/shared/services/properties.service';
 
@@ -12,7 +13,7 @@ export class PropertiesComponent implements OnInit {
   properties: any[];
   displayStyle = "none";
 
-  constructor(private propertyService: PropertiesService) { }
+  constructor(private propertyService: PropertiesService, private router: Router) { }
 
   ngOnInit(): void {
     this.propertyService.getProperties().subscribe(properties => {
@@ -30,15 +31,7 @@ export class PropertiesComponent implements OnInit {
 
   }
 
-  bookProperty(){
-    const startDateInput = document.getElementById('startDate') as HTMLInputElement;
-    const endDateInput = document.getElementById('endDate') as HTMLInputElement;
-    const startDate = startDateInput.value;
-    const endDate = endDateInput.value;
-
-    console.log(startDate);
-    console.log(endDate);
-
-
+  navigateToFullPropertyDetails(propertyId: number) {
+    this.router.navigate(['/properties', propertyId]);
   }
 }

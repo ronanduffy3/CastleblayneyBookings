@@ -12,7 +12,7 @@ export class AdminGuard implements CanActivate {
 
   canActivate(): boolean {
     const user = JSON.parse(localStorage.getItem('user'));
-    if (this.authService.isLoggedIn && user.role === 'admin') {
+    if (user.role === 'admin') {
       return true;
     } else {
       this.router.navigate(['unauthorized']);

@@ -17,6 +17,7 @@ export const newUserCreated = functions.auth.user().onCreate(async (user) => {
 });
 
 
+
 export const getUsersWithUserClaim = functions.https.onCall(async (data, context) => {
 
   const userRecords = await admin.auth().listUsers();

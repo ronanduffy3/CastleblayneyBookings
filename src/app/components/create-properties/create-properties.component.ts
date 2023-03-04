@@ -48,7 +48,6 @@ export class CreatePropertiesComponent implements OnInit {
       availableMonths: new FormControl([], Validators.required)
     });
 
-    
     const userID = await this.authService.returnUserId();
     this.form.controls['uid'].setValue(userID);
     this.xuserID = userID;
@@ -88,6 +87,7 @@ export class CreatePropertiesComponent implements OnInit {
       sleeps: this.form.get('sleeps').value,
       ratePerNight: this.form.get('ratePerNight').value,
       uid: this.form.get('uid').value,
+      shortDescription: this.form.get('shortDescription').value,
       availability: availability,
       images: []
     };

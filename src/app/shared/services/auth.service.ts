@@ -37,11 +37,13 @@ export class AuthService {
     return (user !== null && user.emailVerified !== false) ? true : false;
   }
 
+  // return the users display name
   async returnDisplayname(){
       const user = await this.afAuth.authState.pipe(first()).toPromise();
       return user.displayName;
   }
 
+  // return the current users id
   async returnUserId() {
     const user = await this.afAuth.authState.pipe(first()).toPromise();
     return user.uid;
@@ -70,6 +72,7 @@ export class AuthService {
       })
    }
 
+   //sending verification email
    SendVerificationMail(){
     return this.afAuth.currentUser
       .then((u: any) => u.sendEmailVerification())
@@ -78,6 +81,7 @@ export class AuthService {
       });
    }
 
+   // sign up with username or password
    SignUp(email: string, password: string){
     return this.afAuth.createUserWithEmailAndPassword(email, password)
       .then((result) => {
@@ -97,15 +101,28 @@ export class AuthService {
     });
   }
 
-  async hasAdminCustomClaim(): Promise<boolean> {
+
+  // check that is a user is an admin
+  get isAdmin(): boolean {
     const user = JSON.parse(localStorage.getItem('user'));
-    if (this.isLoggedIn && user.role === 'admin') {
+    if (this.isLoggedIn && user.role === 'host') {
+      return true;
+    } else {
+      this.router.navigate(['unauthorized']);
+      return false;
+  }
+}
+  // check that a user is a host
+  async hasHostCustomClaim(): Promise<boolean> {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (this.isLoggedIn && user.role === 'host') {
       return true;
     } else {
       this.router.navigate(['unauthorized']);
       return false;
     }
   }
+
 
   SetUserData(user: any) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);

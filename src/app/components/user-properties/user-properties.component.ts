@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Property } from 'src/app/models/property';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { PropertiesService } from 'src/app/shared/services/properties.service';
-import { DatepickerOptions } from 'ng2-datepicker';
 import { Router } from '@angular/router';
 
 @Component({
