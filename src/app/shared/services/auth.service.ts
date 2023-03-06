@@ -58,6 +58,11 @@ export class AuthService {
     return (await this.afAuth.currentUser).updateProfile(profile)
    }
    
+   currentUser(){
+    const user = this.afAuth.currentUser;
+
+    return user;
+   }
 
    // Signing in with email and password - takes email and password as a string and sets the user data in the set user data function and if the user is valid navigates to dashboard
    SignIn(email: string, password: string){

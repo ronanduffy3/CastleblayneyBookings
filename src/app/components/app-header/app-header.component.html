@@ -27,6 +27,7 @@
                     <li><button *ngIf="!this.authService.isLoggedIn" class="dropdown-item" type="button" (click)="this.router.navigate(['register'])">Sign Up</button></li>
                     <li><button *ngIf="this.authService.isLoggedIn" class="dropdown-item" type="button" (click)="this.router.navigate(['profile'])">Profile</button></li>
                     <li><button *ngIf="this.authService.isLoggedIn" class="dropdown-item" type="button" (click)="this.router.navigate(['user-properties'])">My Properties</button></li>
+                    <li><button *ngIf="this.authService.isLoggedIn" class="dropdown-item" type="button" (click)="this.router.navigate(['user-bookings'])">My Bookings</button></li>
                 </ul>
             </div>
         </div>

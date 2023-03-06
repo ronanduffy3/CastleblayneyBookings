@@ -28,6 +28,8 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { EditPropertiesComponent } from './components/edit-properties/edit-properties.component';
 import { AngularFireStorageModule, BUCKET } from '@angular/fire/compat/storage';
 import { FormsModule } from '@angular/forms';
+import { BookPropertyComponent } from './components/book-property/book-property.component';
+import { UserBookingsComponent } from './components/user-bookings/user-bookings.component';
 
 @NgModule({
   declarations: [
@@ -41,9 +43,11 @@ import { FormsModule } from '@angular/forms';
     ProfileComponent,
     HomeComponent,
     VerifyEmailComponent,
+    BookPropertyComponent,
     UserPropertiesComponent,
     CreatePropertiesComponent,
-    EditPropertiesComponent
+    EditPropertiesComponent,
+    UserBookingsComponent
   ],
   exports: [ LoginComponent],
   imports: [
@@ -54,7 +58,7 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     AngularFireFunctionsModule,
     AngularFireStorageModule,
-    
+
     FormsModule,
     ReactiveFormsModule
 

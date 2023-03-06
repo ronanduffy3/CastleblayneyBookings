@@ -1,15 +1,25 @@
 import { Injectable } from '@angular/core';
-import { Auth } from '@angular/fire/auth';
-import { AuthService } from './auth.service';
-import { PropertiesService } from './properties.service';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Booking } from 'src/app/models/booking';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
-export class BookingsService {
+export class BookingService {
 
-  constructor(private authService: AuthService, private propertiesServices: PropertiesService) { }
+  constructor(private afs: AngularFirestore) { }
 
-  
+  // Get all bookings for a specific user ID
+  getUserBookings(userId: string): Observable<Booking[]> {
+    return this.afs.collection<Booking>('bookings', ref => {
+      return ref.where('userId', '==', userId);
+    }).valueChanges({ idField: 'id' });
+  }
 
+  // Cancel a booking with the given booking ID
+  cancelBooking(bookingId: string): Promise<void> {
+    return this.afs.collection('bookings').doc(bookingId).delete();
+  }
 }
