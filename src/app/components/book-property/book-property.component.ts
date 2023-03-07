@@ -37,6 +37,11 @@ export class BookPropertyComponent implements OnInit {
     this.xuserid = uID;
   }
 
+  isAvailable(month: string): boolean {
+    console.log(month);
+    return this.property.availability[month];
+  }
+
   async bookProperty() {
 
     const upropertyId = this.propertyDoc.ref.id;
@@ -47,6 +52,11 @@ export class BookPropertyComponent implements OnInit {
 
     if (startDate < tomorrow) {
       alert('Start date must be tomorrow at the earliest.');
+      return;
+    }
+
+    if (startDate > endDate){
+      alert('End date must be after start date');
       return;
     }
 

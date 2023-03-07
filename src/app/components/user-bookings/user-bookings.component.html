@@ -1,15 +1,24 @@
 <h1>My Bookings</h1>
-
+<div class="d-flex justify-content-center"> 
 <div *ngIf="bookings.length === 0">
   <p>You have no bookings.</p>
 </div>
-
-<div *ngFor="let booking of bookings">
-  <h2>Booking {{ booking.id }}</h2>
-  <p>Property ID: {{ booking.propertyId }}</p>
-  <p>Start Date: {{ booking.startDate }}</p>
-  <p>End Date: {{ booking.endDate}}</p>
-  <p>Days: {{ booking.days }}</p>
-  <p>Value: {{ booking.value | currency }}</p>
-  <hr>
+</div>
+<div class="container">
+  <div class="wrapper">
+    <div class="row">
+      <div *ngFor="let booking of bookings">
+      <div class="card p-3 mb-2">
+        
+          <h2>Booking {{ booking.id }}</h2>
+          <p><b>Property ID:</b> {{ booking.propertyId }}</p>
+          <p><b>Start Date:</b> {{ booking.startDate }}</p>
+          <p><b>End Date:</b> {{ booking.endDate}}</p>
+          <p><b>Days:</b> {{ booking.days }}</p>
+          <p><b>Value:</b> {{ booking.value | currency: "EUR" }}</p>
+          <input type="button" value="Cancel booking" class="btn btn-custom" (click)="cancelBooking(booking.id)">
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

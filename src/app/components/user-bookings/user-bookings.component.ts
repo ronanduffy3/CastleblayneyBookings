@@ -26,5 +26,11 @@ export class UserBookingsComponent implements OnInit {
 
   }
 
+  cancelBooking(bookingId: string){
+    this.bookingService.cancelBooking(bookingId);
+  }
+
+  
+
 
 }

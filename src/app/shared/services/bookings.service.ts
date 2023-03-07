@@ -19,7 +19,16 @@ export class BookingService {
   }
 
   // Cancel a booking with the given booking ID
-  cancelBooking(bookingId: string): Promise<void> {
-    return this.afs.collection('bookings').doc(bookingId).delete();
+  cancelBooking(bookingId: string) {
+    if(confirm("Are you sure you want to cancel booking with ID" + bookingId)){
+      return this.afs.collection('bookings').doc(bookingId).delete().then(res => {
+        window.alert(res+"booking cancelled")
+      });
+    }
+    else{
+      window.alert("Booking not cancelled");
+      return false;
+    }
+    
   }
 }
