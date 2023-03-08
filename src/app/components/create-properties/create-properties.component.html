@@ -7,8 +7,9 @@
         <input type="text" class="form-control" placeholder="Property Name" name="name" formControlName="name" required>
       </div>
       <div class="form-group">
-        <input type="text" class="form-control" placeholder="Address" name="address" formControlName="address" required>
+        <input ngx-google-places-autocomplete [options]='options' (onAddressChange)="handleAddressChange($event)" class="form-control" placeholder="Address" name="address" formControlName="address" required />
       </div>
+
       <div class="form-group">
         <input type="number" class="form-control" placeholder="Sleeps" name="sleeps" formControlName="sleeps" required>
       </div>

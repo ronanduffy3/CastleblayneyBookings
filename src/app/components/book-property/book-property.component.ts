@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Property } from 'src/app/models/property';
 import { PropertiesService } from 'src/app/shared/services/properties.service';
 import { DatepickerModule } from 'ng2-datepicker';
@@ -23,7 +23,7 @@ export class BookPropertyComponent implements OnInit {
   endDate = new Date();
   xuserid: String;
 
-  constructor(private propService: PropertiesService, private route: ActivatedRoute, private auth: AuthService, private afs: AngularFirestore) { }
+  constructor(private propService: PropertiesService, private route: ActivatedRoute, private auth: AuthService, private afs: AngularFirestore, private router: Router) { }
 
   async ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
@@ -57,6 +57,12 @@ export class BookPropertyComponent implements OnInit {
 
     if (startDate > endDate){
       alert('End date must be after start date');
+      return;
+    }
+
+    if (this.property.uid == this.xuserid){
+      alert('You can not book your own property')
+      this.router.navigate['properties'];
       return;
     }
 

@@ -14,9 +14,16 @@ import { combineLatest, finalize, map, Observable } from 'rxjs';
 })
 export class CreatePropertiesComponent implements OnInit {
 
+  options: any = {
+    componentRestrictions: { country: 'IE' }
+  }  
+
   form: FormGroup;
   xuserID: string;
   months: { month: string, checked: boolean }[];
+  userAddress: string = ''
+  userLatitude: string = ''
+  userLongitude: string = ''
   selectedFiles: any[] = [];
 
   constructor(public authService: AuthService, public propertyService: PropertiesService, public storage: AngularFireStorage) { }
@@ -53,6 +60,14 @@ export class CreatePropertiesComponent implements OnInit {
     this.xuserID = userID;
 }
 
+handleAddressChange(address: any) {
+  this.userAddress = address.formatted_address
+  this.userLatitude = address.geometry.location.lat()
+  this.userLongitude = address.geometry.location.lng()
+
+  console.log(this.userLatitude + " " + this.userLongitude);
+}
+
   
   createProperty() {
     const monthsAvailable = this.months.reduce((acc, { month, checked }) => {
@@ -83,7 +98,7 @@ export class CreatePropertiesComponent implements OnInit {
     }
     const property: Property = {
       name: this.form.get('name').value,
-      address: this.form.get('address').value,
+      address: this.userAddress,
       sleeps: this.form.get('sleeps').value,
       ratePerNight: this.form.get('ratePerNight').value,
       uid: this.form.get('uid').value,

@@ -30,6 +30,7 @@ import { AngularFireStorageModule, BUCKET } from '@angular/fire/compat/storage';
 import { FormsModule } from '@angular/forms';
 import { BookPropertyComponent } from './components/book-property/book-property.component';
 import { UserBookingsComponent } from './components/user-bookings/user-bookings.component';
+import { GooglePlaceModule } from "ngx-google-places-autocomplete";
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { UserBookingsComponent } from './components/user-bookings/user-bookings.
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     CommonModule,
+    GooglePlaceModule,
     AngularFireFunctionsModule,
     AngularFireStorageModule,
 

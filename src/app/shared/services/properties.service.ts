@@ -5,6 +5,7 @@ import { AuthService } from './auth.service';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { Property } from 'src/app/models/property';
 import { finalize } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class PropertiesService {
   properties: Observable<Property[]>;
   private propertiesCollection: AngularFirestoreCollection<Property>;
 
-  constructor(private fireStore: AngularFirestore, private authService: AuthService, public storage: AngularFireStorage) { 
+  constructor(private fireStore: AngularFirestore, private authService: AuthService, public storage: AngularFireStorage, private router: Router) { 
     this.refreshProperties();
   }
 
@@ -105,7 +106,9 @@ export class PropertiesService {
               // Add the property to the Firestore collection and get the document reference
               const documentRef = this.fireStore.collection(`properties`).add(property);
               // Get the ID of the newly created document and log it to the console
-              documentRef.then(docRef => console.log(`Property added with ID: ${docRef.id}`));
+              documentRef.then(docRef => console.log(`Property added with ID: ${docRef.id}`)).then(this.router.navigate['user-properties']).catch(err => {
+                window.alert("Error: " + err)
+              });
             }
           });
         })
