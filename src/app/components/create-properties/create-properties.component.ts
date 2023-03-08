@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators, ReactiveFormsModule, FormsModule, FormArray} from '@angular/forms';
+import { FormControl, FormGroup, Validators, ReactiveFormsModule, FormsModule, FormArray } from '@angular/forms';
 import { Property } from 'src/app/models/property';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { PropertiesService } from 'src/app/shared/services/properties.service';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { combineLatest, finalize, map, Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -16,7 +17,7 @@ export class CreatePropertiesComponent implements OnInit {
 
   options: any = {
     componentRestrictions: { country: 'IE' }
-  }  
+  }
 
   form: FormGroup;
   xuserID: string;
@@ -26,7 +27,7 @@ export class CreatePropertiesComponent implements OnInit {
   userLongitude: string = ''
   selectedFiles: any[] = [];
 
-  constructor(public authService: AuthService, public propertyService: PropertiesService, public storage: AngularFireStorage) { }
+  constructor(public authService: AuthService, public propertyService: PropertiesService, public storage: AngularFireStorage, private router: Router) { }
 
   async ngOnInit() {
 
@@ -58,17 +59,16 @@ export class CreatePropertiesComponent implements OnInit {
     const userID = await this.authService.returnUserId();
     this.form.controls['uid'].setValue(userID);
     this.xuserID = userID;
-}
+  }
 
-handleAddressChange(address: any) {
-  this.userAddress = address.formatted_address
-  this.userLatitude = address.geometry.location.lat()
-  this.userLongitude = address.geometry.location.lng()
+  handleAddressChange(address: any) {
+    this.userAddress = address.formatted_address
+    this.userLatitude = address.geometry.location.lat()
+    this.userLongitude = address.geometry.location.lng()
+    console.log(this.userLatitude + " " + this.userLongitude);
+  }
 
-  console.log(this.userLatitude + " " + this.userLongitude);
-}
 
-  
   createProperty() {
     const monthsAvailable = this.months.reduce((acc, { month, checked }) => {
       if (checked) {
@@ -92,7 +92,7 @@ handleAddressChange(address: any) {
       'November': false,
       'December': false
     };
-  
+
     for (const month of monthsAvailable) {
       availability[month] = true;
     }
@@ -116,6 +116,7 @@ handleAddressChange(address: any) {
 
 
     this.propertyService.createProperty(property, fileList)
+
   }
 
   onFileSelected(event: Event): void {

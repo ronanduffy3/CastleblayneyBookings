@@ -106,24 +106,24 @@ export class PropertiesService {
               // Add the property to the Firestore collection and get the document reference
               const documentRef = this.fireStore.collection(`properties`).add(property);
               // Get the ID of the newly created document and log it to the console
-              documentRef.then(docRef => console.log(`Property added with ID: ${docRef.id}`)).then(this.router.navigate['user-properties']).catch(err => {
-                window.alert("Error: " + err)
-              });
+              documentRef.then(docRef => console.log(`Property added with ID: ${docRef.id}`))
+
+              this.goToUserProperties();
+             
             }
           });
         })
       ).subscribe();
     }
 
-    
+  }
+
+  goToUserProperties(){
+    this.router.navigate(['user-properties']);
   }
 
   getPropertyById(id: string): Observable<Property> {
     return this.fireStore.collection<Property>('properties').doc(id).valueChanges();
-  }
-
-  private uploadFiles(files: File[]) {
-    
   }
 
   deleteProperty(id: string) {

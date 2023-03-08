@@ -1,24 +1,35 @@
 <div class="container formGroup">
-	<div class="wrapper">
-		<form action="" method="post" name="Login_Form" class="form-signin">       
-		    <h3 class="form-signin-heading">Edit Property</h3>
-			  <hr class="colorgraph"><br>
-			  
+    <div class="wrapper">
+        <form [formGroup]="form" class="form-signin">
+            <h3 class="form-signin-heading">Edit Property</h3>
+            <hr class="colorgraph"><br>
             <div class="form-group">
-                <input type="text" class="form-control" name="name" placeholder="Name" required="true" formControlName="name" autofocus="" #Name required>
+                <input type="text" class="form-control" name="propName" formControlName="propName" required>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" name="address" placeholder="Address" required="true" formControlName="address" #Address required>
+                <input type="text" class="form-control" name="name" formControlName="address" readonly required>
             </div>
             <div class="form-group">
-                <input type="number" class="form-control" name="sleeps" placeholder="Sleeps" required="true" formControlName="sleeps" #Sleeps required>
+                <input type="number" class="form-control" name="sleeps" formControlName="sleeps" required>
             </div>
             <div class="form-group">
-                <input type="number" class="form-control" name="ratePerNight" placeholder="Rate Per Night" formControlName="ratePerNight" required="true" #RatePerNight required>
+                <input type="number" class="form-control" name="ratePerNight" formControlName="ratePerNight" required>
             </div>
             <div class="form-group">
-                <input type="button" class="btn btn-lg btn-custom btn-block" value="Submit" > 
-            </div>	       
-		</form>			
-	</div>
+                <input type="text" class="form-control shortDesc" name="shortDescription"
+                    formControlName="shortDescription" required>
+            </div>
+            <div class="form-check" *ngFor="let month of months; let i = index">
+                <label class="form-check-label">
+                  <input type="checkbox" class="form-check-input" [checked]="month.checked"
+                    (change)="months[i].checked = !months[i].checked">
+                  {{ month.month }}
+                </label>
+              </div>
+            <div class="form-group">
+                <button type="button" class="btn btn-lg btn-custom btn-block" (click)="updateProperty()">Update</button>
+            </div>
+        </form>
+
+    </div>
 </div>
