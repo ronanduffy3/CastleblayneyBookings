@@ -10,6 +10,7 @@ import { map, Observable } from 'rxjs';
 export class DashboardComponent implements OnInit {
 
   users$: Observable<any[]>;
+  hosts$: Observable<any[]>;
 
   constructor(public functions: AngularFireFunctions) { }
 
@@ -20,11 +21,30 @@ export class DashboardComponent implements OnInit {
     this.users$ = getUsersWithUserClaim({}).pipe(
       map((response) => response)
     );
-
     this.users$.subscribe((data) => console.log(data));
+    const getHostUsers = this.functions.httpsCallable(
+      "getHostUsers"
+    );
+    this.hosts$ = getHostUsers({}).pipe(
+      map((response) => response)
+    );
+
+    this.hosts$.subscribe((date) => console.log(date))
   }
 
-  promoteUser(){
+  promoteUser(userId: string) {
+    console.log(userId);  
+    const setHostCustomClaim = this.functions.httpsCallable('giveUserHost');
+   setHostCustomClaim({ userId })
+    .subscribe((result) => {
+      alert('Custom claim added successfully');
+    }, (error) => {
+      alert('Error adding custom claim' + error);
+    });
+  }
+
+  demoteUser(){
+
 
   }
   

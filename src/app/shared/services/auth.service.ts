@@ -43,6 +43,13 @@ export class AuthService {
       return user.displayName;
   }
 
+  // return the users email name
+  async returnEmail(){
+    const user = await this.afAuth.authState.pipe(first()).toPromise();
+    return user.email;
+}
+
+
   // return the current users id
   async returnUserId() {
     const user = await this.afAuth.authState.pipe(first()).toPromise();

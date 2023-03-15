@@ -10,10 +10,10 @@
       <div *ngFor="let booking of bookings">
       <div class="card p-3 mb-2">
         
-          <h2>Booking {{ booking.id }}</h2>
+          <h2>Booking for {{ booking.propertyName }}</h2>
           <p><b>Property ID:</b> {{ booking.propertyId }}</p>
-          <p><b>Start Date:</b> {{ booking.startDate }}</p>
-          <p><b>End Date:</b> {{ booking.endDate}}</p>
+          <p><b>Start Date:</b> {{ booking.cStartDate }}</p>
+          <p><b>End Date:</b> {{ booking.cEndDate}}</p>
           <p><b>Days:</b> {{ booking.days }}</p>
           <p><b>Value:</b> {{ booking.value | currency: "EUR" }}</p>
           <input type="button" value="Cancel booking" class="btn btn-custom" (click)="cancelBooking(booking.id)">

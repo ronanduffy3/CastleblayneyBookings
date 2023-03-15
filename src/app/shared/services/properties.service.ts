@@ -108,8 +108,7 @@ export class PropertiesService {
               // Get the ID of the newly created document and log it to the console
               documentRef.then(docRef => console.log(`Property added with ID: ${docRef.id}`))
 
-              this.goToUserProperties();
-             
+              this.goToUserProperties();    
             }
           });
         })
@@ -128,7 +127,7 @@ export class PropertiesService {
 
   deleteProperty(id: string) {
     console.log(id);
-    var answer = window.confirm("You want to delete, you can not reverse this decision" + id)
+    var answer = window.confirm("You want to delete this property?")
     if(answer){ 
       const propertiesDoc = this.fireStore.collection('properties').doc(id);
       propertiesDoc.delete()

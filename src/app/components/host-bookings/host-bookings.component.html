@@ -1,0 +1,24 @@
+
+<div class="container">
+    <div class="wrapper">
+    <div class="aria-controls">
+      <input type="button" class="btn btn-top btn-md btn-block" value="Properties" (click)="this.router.navigate(['user-properties'])"> 
+    </div>
+</div>
+<div class="wrapper">
+  <div class="row">
+    <div *ngFor="let booking of bookings">
+    <div class="card p-3 mb-2">
+        <h2>Booking for {{ booking.propertyName }}</h2>
+        <p><b>Property ID:</b> {{ booking.propertyId }}</p>
+        <p><b>Start Date:</b> {{ booking.cStartDate }}</p>
+        <p><b>End Date:</b> {{ booking.cEndDate}}</p>
+        <p><b>Days:</b> {{ booking.days }}</p>
+        <p><b>Booker:</b> {{ booking.bookerName }}</p>
+        <p><b>Contact:</b> {{ booking.bookerEmail }}</p>
+        <p><b>Value:</b> {{ booking.value | currency: "EUR" }}</p>
+        <input type="button" value="Cancel booking" class="btn btn-custom" >
+      </div>
+    </div>
+  </div>
+</div>

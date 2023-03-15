@@ -16,6 +16,7 @@ import { AdminGuard } from './shared/guard/admin.guard';
 import { FormsModule } from '@angular/forms';
 import { BookPropertyComponent } from './components/book-property/book-property.component';
 import { UserBookingsComponent } from './components/user-bookings/user-bookings.component'
+import { HostBookingsComponent } from './components/host-bookings/host-bookings.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -30,7 +31,8 @@ const routes: Routes = [
   {path: 'create-property', component: CreatePropertiesComponent},
   {path: 'edit-properties', component: EditPropertiesComponent},
   {path: 'properties/:id', component: BookPropertyComponent },
-  {path: 'user-bookings', component: UserBookingsComponent }
+  {path: 'user-bookings', component: UserBookingsComponent },
+  {path: 'host-bookings', component: HostBookingsComponent}
 ];
 
 @NgModule({

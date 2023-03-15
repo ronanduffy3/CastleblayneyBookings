@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Booking } from 'src/app/models/booking';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import * as firebase from 'firebase/app';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,13 @@ export class BookingService {
       return ref.where('userId', '==', userId);
     }).valueChanges({ idField: 'id' });
   }
+
+  getHostBookings(userId: string): Observable<Booking[]>{
+    return this.afs.collection<Booking>('bookings', ref => {
+      return ref.where('ownerId', '==', userId);
+    }).valueChanges({ idField: 'id' });
+  }
+
 
   // Cancel a booking with the given booking ID
   cancelBooking(bookingId: string) {

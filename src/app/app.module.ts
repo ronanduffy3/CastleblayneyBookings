@@ -31,6 +31,7 @@ import { FormsModule } from '@angular/forms';
 import { BookPropertyComponent } from './components/book-property/book-property.component';
 import { UserBookingsComponent } from './components/user-bookings/user-bookings.component';
 import { GooglePlaceModule } from "ngx-google-places-autocomplete";
+import { HostBookingsComponent } from './components/host-bookings/host-bookings.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { GooglePlaceModule } from "ngx-google-places-autocomplete";
     UserPropertiesComponent,
     CreatePropertiesComponent,
     EditPropertiesComponent,
-    UserBookingsComponent
+    UserBookingsComponent,
+    HostBookingsComponent,
   ],
   exports: [ LoginComponent],
   imports: [

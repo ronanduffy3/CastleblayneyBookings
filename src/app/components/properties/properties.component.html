@@ -12,7 +12,7 @@
                 </div>
              </div>
              <div class="container">
-               <img [src]="property.images.length > 0 ? property.images[0] : 'placeholder-image-url'" alt="Property image">
+               <img class= 'img-fluid' [src]="property.images.length > 0 ? property.images[0] : 'placeholder-image-url'" alt="Property image">
              </div>
              <div class="mt-5">
                 <h3 class="heading"><br></h3>
@@ -20,7 +20,7 @@
                    <div class="property-details">
                       <h6>Rate €{{property.ratePerNight}} per night | {{property.address}}</h6>
                    </div>
-                   <button type="button" class="btn btn-lg btn-custom btn-block" (click)="navigateToFullPropertyDetails(property.id)"> Book Property</button>  
+                   <button type="button" *ngIf="this.auth.isLoggedIn" class="btn btn-lg btn-custom btn-block" (click)="navigateToFullPropertyDetails(property.id)">Book Property</button>  
                      </div>
                   </div>        
              </div>

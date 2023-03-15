@@ -2,6 +2,7 @@
     <div class="wrapper">
     <div class="aria-controls">
       <input type="button" class="btn btn-top btn-md btn-block" value="Create Property" (click)="this.router.navigate(['create-property'])"> 
+      <input type="button" class="btn btn-top btn-md btn-block" style='margin-left: 10px' value="View Bookings" (click)="this.router.navigate(['host-bookings'])"> 
     </div>
     <div class="row">
        <div *ngFor="let property of properties" class="col-md-4">
@@ -15,7 +16,7 @@
                 </div>       
              </div>
              <div class="container">
-               <img [src]="property.images.length > 0 ? property.images[0] : 'placeholder-image-url'" alt="Property image">
+               <img class='img-fluid' [src]="property.images.length > 0 ? property.images[0] : 'placeholder-image-url'" alt="Property image">
              </div>
              <div class="mt-5">
                 <h3 class="heading"><br></h3>

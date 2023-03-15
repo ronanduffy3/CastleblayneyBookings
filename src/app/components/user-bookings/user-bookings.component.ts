@@ -22,6 +22,13 @@ export class UserBookingsComponent implements OnInit {
 
     this.bookingService.getUserBookings(this.xuserId).subscribe(bookings => {
       this.bookings = bookings;
+      this.bookings.forEach(booking => {
+        const startDate = new Date(booking.startDate.seconds * 1000);
+        const endDate = new Date(booking.endDate.seconds * 1000);
+        booking.cStartDate = startDate.toDateString();
+        booking.cEndDate = endDate.toDateString();
+      });
+
     })
 
   }

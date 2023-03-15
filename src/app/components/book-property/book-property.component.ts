@@ -21,20 +21,38 @@ export class BookPropertyComponent implements OnInit {
   propertyDoc: AngularFirestoreDocument<Property>;
   startDate = new Date();
   endDate = new Date();
-  xuserid: String;
+  availableMonths: string[] | undefined;
+  xuserid: string;
+  xdisplayName: string;
+  xemail: string;
 
   constructor(private propService: PropertiesService, private route: ActivatedRoute, private auth: AuthService, private afs: AngularFirestore, private router: Router) { }
 
   async ngOnInit() {
+    // go to the correct route of the selected property
     const id = this.route.snapshot.paramMap.get('id');
     this.propertyDoc = this.afs.doc(`properties/${id}`);
-    console.log(this.propertyDoc);
     this.propService.getPropertyById(id).subscribe((property: Property) => {
       this.property = property;
-      console.log(property);
+      const availability = property.availability;
+      const months = Object.keys(availability);
+      const availableMonths = months.filter(month => availability[month]);
+
+      if (availableMonths.length > 0) {
+        this.availableMonths = availableMonths;
+      } else {
+        this.availableMonths = undefined;
+      }
+      console.log(this.availableMonths)
     });
+
+    // load information of user to stay in the DB
     const uID = await this.auth.returnUserId();
+    const displayName = await this.auth.returnDisplayname();
+    const email = await this.auth.returnEmail();
     this.xuserid = uID;
+    this.xdisplayName = displayName;
+    this.xemail = email;
   }
 
   isAvailable(month: string): boolean {
@@ -50,6 +68,8 @@ export class BookPropertyComponent implements OnInit {
     const startDate = new Date(this.startDate);
     const endDate = new Date(this.endDate);
 
+    if(startDate )
+
     if (startDate < tomorrow) {
       alert('Start date must be tomorrow at the earliest.');
       return;
@@ -63,6 +83,11 @@ export class BookPropertyComponent implements OnInit {
     if (this.property.uid == this.xuserid){
       alert('You can not book your own property')
       this.router.navigate['properties'];
+      return;
+    }
+
+    if (!this.isAvailable(startDate.getMonth().toString())) {
+      alert('Sorry, this property is not available for the selected start month.');
       return;
     }
 
@@ -102,11 +127,14 @@ export class BookPropertyComponent implements OnInit {
 
           const booking = {
             userId: this.xuserid,
+            propertyName: this.property.name,
+            bookerName: this.xdisplayName,
             propertyId: upropertyId,
             ownerId: this.property.uid,
             startDate: startDate,
             endDate: endDate,
             days: days,
+            bookerEmail: this.xemail,
             value: value
           };
 
