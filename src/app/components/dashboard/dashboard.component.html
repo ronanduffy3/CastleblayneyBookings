@@ -4,54 +4,16 @@
         <table class="table table-responsive">
           <thead>
             <tr>
-              <th>Users UID</th>
               <th>Email</th>
               <th>Display Name</th>
-              <th>Role</th>
-              <th>Actions</th>
+
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let user of users$ | async">
               <td>{{ user.uid }}</td>
               <td>{{ user.email }}</td>
-              <td>{{ user.displayName }}</td>
-              <td>{{ user.role }}</td>
               <td>
-                <button class="btn btn-custom" (click)="promoteUser(user.uid)">
-                  Promote
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-8">
-        <table class="table table-responsive">
-          <thead>
-            <tr>
-              <th>Users UID</th>
-              <th>Email</th>
-              <th>Display Name</th>
-              <th>Role</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let host of hosts$ | async">
-              <td>{{ host.uid }}</td>
-              <td>{{ host.email }}</td>
-              <td>{{ host.displayName }}</td>
-              <td>{{ host.role }}</td>
-              <td>
-                <button class="btn btn-custom" >
-                  Promote
-                </button>
               </td>
             </tr>
           </tbody>

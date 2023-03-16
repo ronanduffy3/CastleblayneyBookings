@@ -17,7 +17,7 @@
         <p><b>Booker:</b> {{ booking.bookerName }}</p>
         <p><b>Contact:</b> {{ booking.bookerEmail }}</p>
         <p><b>Value:</b> {{ booking.value | currency: "EUR" }}</p>
-        <input type="button" value="Cancel booking" class="btn btn-custom" >
+        <input type="button" value="Cancel booking" class="btn btn-custom" (click)="cancelBooking(booking, booking.propertyId)">
       </div>
     </div>
   </div>

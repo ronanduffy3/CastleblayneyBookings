@@ -16,7 +16,7 @@
           <p><b>End Date:</b> {{ booking.cEndDate}}</p>
           <p><b>Days:</b> {{ booking.days }}</p>
           <p><b>Value:</b> {{ booking.value | currency: "EUR" }}</p>
-          <input type="button" value="Cancel booking" class="btn btn-custom" (click)="cancelBooking(booking.id)">
+          <input type="button" value="Cancel booking" class="btn btn-custom" (click)="cancelBooking(booking, booking.propertyId)">
         </div>
       </div>
     </div>

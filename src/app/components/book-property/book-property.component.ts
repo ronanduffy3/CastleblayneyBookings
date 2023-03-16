@@ -8,6 +8,7 @@ import { NgModel } from '@angular/forms';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { Booking } from 'src/app/models/booking';
+import { MailItem } from '../../models/mail-item';
 
 
 @Component({
@@ -25,6 +26,7 @@ export class BookPropertyComponent implements OnInit {
   xuserid: string;
   xdisplayName: string;
   xemail: string;
+  hemail: string;
 
   constructor(private propService: PropertiesService, private route: ActivatedRoute, private auth: AuthService, private afs: AngularFirestore, private router: Router) { }
 
@@ -68,7 +70,7 @@ export class BookPropertyComponent implements OnInit {
     const startDate = new Date(this.startDate);
     const endDate = new Date(this.endDate);
 
-    if(startDate )
+
 
     if (startDate < tomorrow) {
       alert('Start date must be tomorrow at the earliest.');
@@ -86,10 +88,13 @@ export class BookPropertyComponent implements OnInit {
       return;
     }
 
-    if (!this.isAvailable(startDate.getMonth().toString())) {
+    const startMonth = startDate.toLocaleString('default', { month: 'long' }); 
+    console.log(startMonth)// get the month of the start date as a string, e.g. 'January'
+    if (this.property.availability[startMonth] === false) { // check if the month is marked as unavailable in the availability map
       alert('Sorry, this property is not available for the selected start month.');
       return;
-    }
+}
+    
 
     const bookingsRef = this.afs.collection<Booking>('bookings', ref => {
       return ref.where('propertyId', '==', upropertyId);
@@ -138,6 +143,22 @@ export class BookPropertyComponent implements OnInit {
             value: value
           };
 
+          const bookerMailItem: MailItem = {
+            to: booking.bookerEmail,
+            message: {
+              subject: 'Your in, you are booked for ' + booking.propertyName,
+              html: 'test email'
+            } 
+          }
+
+          const hostMailItem: MailItem = {
+            to: this.property.hostEmail,
+            message: {
+              subject: 'You have a new booking for ' + booking.propertyName,
+              html: 'test email'
+            }
+          }
+
           const bookingDetails = `Booking Details:\n\n` +
             `Property: ${this.property.name}\n` +
             `Start Date: ${booking.startDate.toDateString()}\n` +
@@ -148,6 +169,8 @@ export class BookPropertyComponent implements OnInit {
           if (confirm(bookingDetails)) {
             this.afs.collection('bookings').add(booking).then(() => {
               alert('Booking successfully created!');
+            this.afs.collection('mail').add(bookerMailItem);
+            this.afs.collection('mail').add(hostMailItem);
             }).catch(error => {
               console.error(error);
               alert('An error occurred while creating the booking.');

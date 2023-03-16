@@ -6,6 +6,7 @@ export interface Property {
     address: string;
     sleeps: string;
     shortDescription?: string;
+    hostEmail?: string;
     availability?: {};
     images?: string[];
 }

@@ -21,6 +21,7 @@ export class CreatePropertiesComponent implements OnInit {
 
   form: FormGroup;
   xuserID: string;
+  xhostEmail: string;
   months: { month: string, checked: boolean }[];
   userAddress: string = ''
   userLatitude: string = ''
@@ -57,8 +58,11 @@ export class CreatePropertiesComponent implements OnInit {
     });
 
     const userID = await this.authService.returnUserId();
+    const userEmail = await this.authService.returnEmail();
     this.form.controls['uid'].setValue(userID);
     this.xuserID = userID;
+    this.xhostEmail = userEmail;
+    
   }
 
   handleAddressChange(address: any) {
@@ -104,6 +108,7 @@ export class CreatePropertiesComponent implements OnInit {
       uid: this.form.get('uid').value,
       shortDescription: this.form.get('shortDescription').value,
       availability: availability,
+      hostEmail: this.xhostEmail,
       images: []
     };
 
